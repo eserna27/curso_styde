@@ -4,18 +4,11 @@ Route::get("/", function (){
   return "Hola";
 });
 
-Route::get("/usuarios", function(){
-  return "usarios";
-});
+Route::get("/usuarios", "UserController@index");
 
-Route::get("/usuarios/nuevo", function(){
-  return "nuevo";
-});
+Route::get("/usuarios/nuevo", "UserController@create");
 
-Route::get("/usuarios/{id}", function($id){
-  return "Mostrando detalle del usuario: {$id}";
-});
+Route::get("/usuarios/{id}", "UserController@show")
+  ->where("id", "[0-9]+");
 
-Route::get("/saludo/{name}/{last_name}", function($name, $last_name){
-  return "Hola {$name} {$last_name}";
-});
+Route::get("/saludo/{name}/{nickname?}", "WelcomeController");
