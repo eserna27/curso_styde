@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -27,4 +27,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $casts = [
+      'is_admin' => 'boolean'
+    ];
+
+    public static function findByEmail($email)
+    {
+      return User::where(compact('email'))->first();
+    }
+
+    public function isAdmin()
+    {
+      return $this->email === "eserna27@gmail.com";
+    }
+
+    public function profession()
+    {
+      return $this->belongsTo(Profession::class);
+    }
 }
