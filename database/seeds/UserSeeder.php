@@ -22,5 +22,7 @@ class UserSeeder extends Seeder
           'password' => bcrypt('secret'),
           'profession_id' => $professionId
         ]);
+
+        factory(User::class, 4)->create();
     }
 }
